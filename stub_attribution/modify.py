@@ -1,12 +1,16 @@
 import struct
 import sys
 
-class AttributionException(Exception): pass
+
+class AttributionException(Exception):
+    pass
+
 
 def write_attribution_data(mapped, data):
     """Insert data into a prepared certificate in a signed PE file.
 
-    Parameters are a stub installer in a bytearray and an attribution code as a string.
+    Parameters are a stub installer in a bytearray and an attribution code
+    as a string.
 
     Returns False if the file isn't a valid PE file, or if the necessary
     certificate was not found.
@@ -49,7 +53,7 @@ def write_attribution_data(mapped, data):
 
     tag = b"__MOZCUSTOM__:"
     tag_index = mapped.find(tag, cert_table_offset,
-        cert_table_offset + cert_table_size)
+                            cert_table_offset + cert_table_size)
     if tag_index == -1:
         raise AttributionException('mapped does not contain dummy cert')
 
